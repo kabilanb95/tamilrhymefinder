@@ -61,6 +61,7 @@ public class MoviesListPage
 			document=Jsoup.connect(movie_url).get();
 			logger.info("Current movie url :"+movie_url);
 			words.addAll(MoviePage.getWordsByScrapingAllSongsInCurrentMoviePage(document));
+			logger.info("Scraping song lyrics completed for movie url :"+movie_url);
 		}
 		
 		return words;

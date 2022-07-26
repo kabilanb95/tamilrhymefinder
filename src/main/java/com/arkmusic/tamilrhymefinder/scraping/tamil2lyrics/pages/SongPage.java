@@ -1,7 +1,7 @@
 package com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.pages;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import org.jsoup.nodes.Document;
@@ -18,9 +18,9 @@ public class SongPage
 	FEMALE_SINGER_DESCRIPTION="Female : "
 	;
 	
-	public static HashSet<String> getWordsFromSongPage(Document document) throws IOException
+	public static TreeSet<String> getWordsFromSongPage(Document document) throws IOException
 	{
-		HashSet<String> words=new HashSet<String>();
+		TreeSet<String> words=new TreeSet<String>();
 		
 		String lyrics=getLyrics(document);
 		lyrics=lyrics.replace("\n", " ").replace("\r", " ");

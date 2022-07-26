@@ -1,14 +1,15 @@
 package com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.arkmusic.tamilrhymefinder.scraping.CommonUtil;
+import com.arkmusic.tamilrhymefinder.CommonUtil;
 import com.arkmusic.tamilrhymefinder.scraping.FileUtil;
 import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.pages.MoviesListPage;
 
@@ -18,36 +19,49 @@ public class Tamil2LyricsScraper
 	
 	public static int WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS=5;
 
-	public static final String SCRAPED_FILE_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/wordsset.txt";
+	public static final String SCRAPED_FILE_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/tamilwords.txt";
 
-	private static HashSet<String> word_set=null;
+	private static TreeSet<String> word_set=null;
 	
-	public static boolean IS_WRITE_TO_FILE=true;
-	
+	//config variables
+	public static boolean IS_WRITE_TO_FILE=true;//set as false if you are not scraping and storing to file
+	public static boolean IS_CONTINUE_SCRAPING=true;//set as true if scraping stopped in the middle and we are continuing it for the remaining pages alone
+
 	public static void main(String[] args) throws IOException
 	{		
-		word_set=new HashSet<String>();
+		if(IS_CONTINUE_SCRAPING)
+		{
+			String word_set_str=FileUtil.getFileAsString(SCRAPED_FILE_PATH);
+			word_set=CommonUtil.commanSeperatedStringToTreeSet(word_set_str);
+			logger.info("Word set was loaded from file with "+word_set.size()+" words");
+		}
+		else 
+		{
+			word_set=new TreeSet<String>();			
+		}
 		
 		Long start=System.currentTimeMillis();
-		HashSet<String> words=getWordsByScrapingAllPages();
+		TreeSet<String> words=getWordsByScrapingAllPages();
 		logger.info("All words scraped:"+words.toString());
 		Long end=System.currentTimeMillis();
 		logger.info("Total Time:"+(end-start));
 	}
 	
-	public static void writeWordsToFile(HashSet<String> words) throws IOException
+	public static void writeWordsToFile(TreeSet<String> words) throws IOException
 	{
 		if(!IS_WRITE_TO_FILE)
 		{
 			return;
 		}
+		
 		word_set.addAll(words);
 		FileUtil.writeStringToFile(SCRAPED_FILE_PATH, CommonUtil.toCommanSeperatedString(word_set));
+		logger.info("Writing to file success!!");
 	}
 		
-	public static HashSet<String> getWordsByScrapingAllPages() throws IOException
+	public static TreeSet<String> getWordsByScrapingAllPages() throws IOException
 	{
-		HashSet<String> words=new HashSet<String>();
+		TreeSet<String> words=new TreeSet<String>();
 		
 		Document document=Jsoup.connect(MoviesListPage.URL).get();
 		
@@ -55,14 +69,13 @@ public class Tamil2LyricsScraper
 		
 		logger.info("Total of "+last_page_index+" pages were found, Going to scrape them one by one");
 		
-		for(int i=1;i<=last_page_index;i++)
-		{
-			int current_page_index=MoviesListPage.getCurrentPageIndex(document);
-			
+		for(int i=120;i<=last_page_index;i++)
+		{			
 			try 
 			{
 				String movie_list_page_url=MoviesListPage.getListURLByIndex(i);
 				document=Jsoup.connect(movie_list_page_url).get();
+				int current_page_index=MoviesListPage.getCurrentPageIndex(document);
 				logger.info("Current movie list page index : "+current_page_index);
 				words.addAll(MoviesListPage.getWordsByScrapingAllMoviesInCurrentMovieListPage(document));
 				logger.info("MOVIE SCRAPING COMPLETED FOR LIST PAGE INDEX : "+current_page_index);
