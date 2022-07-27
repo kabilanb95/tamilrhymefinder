@@ -17,15 +17,15 @@ public class Tamil2LyricsScraper
 {
 	private static Logger logger=Logger.getLogger(Tamil2LyricsScraper.class.getName());
 	
-	public static int WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS=5;
+	public static int WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS=4;
 
-	public static final String SCRAPED_FILE_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/tamilwords.txt";
+	public static final String SCRAPED_FILE_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/tamil.txt";
 
 	private static TreeSet<String> word_set=null;
 	
 	//config variables
 	public static boolean IS_WRITE_TO_FILE=true;//set as false if you are not scraping and storing to file
-	public static boolean IS_CONTINUE_SCRAPING=true;//set as true if scraping stopped in the middle and we are continuing it for the remaining pages alone
+	public static boolean IS_CONTINUE_SCRAPING=false;//set as true if scraping stopped in the middle and we are continuing it for the remaining pages alone
 
 	public static void main(String[] args) throws IOException
 	{		
@@ -69,7 +69,7 @@ public class Tamil2LyricsScraper
 		
 		logger.info("Total of "+last_page_index+" pages were found, Going to scrape them one by one");
 		
-		for(int i=120;i<=last_page_index;i++)
+		for(int i=1;i<=last_page_index;i++)
 		{			
 			try 
 			{
