@@ -1,0 +1,50 @@
+<html>
+
+<head>
+	<title>Tamizh Lyric Tool</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/app.css">
+	<script src="js/rhymefinder.js"></script>
+</head>
+
+<body>
+
+<body class="app_body">
+<div class="top_bar">
+	<h1 class="middle padding25"><span class="header_text">Tamizh Lyric Tool</span></h1>
+</div>
+
+<div id="rhyme_finder_tab" class="tab_container">
+
+<h3 class="middle padding10"><span>Rhyme Finder</span></h3>
+
+<div id="rhyme_finder_inputs" class="middle padding25">
+
+<input id="rhyme_finder_word" class="word_input" placeholder="Enter word">
+
+<br>
+
+<button id="findrhymingwords" class="button padding25">Find Rhyming Words</button>
+
+<br>
+
+<div id="rhyming_words_category_container"></div>
+
+</div>
+
+</div>
+
+<!--Templates-->
+<template id="rhyme_letter_container_template">
+<div class="rhyme_letter_container">
+	<h4><span class="rhyme_section_header middle padding10">$n$ Letter Rhyme</span></h4>
+
+<div class="rhyming_words_container middle"></div>
+
+</div>
+</template>
+
+
+</body>
+</html>
