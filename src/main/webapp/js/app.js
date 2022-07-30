@@ -87,7 +87,7 @@ $(document).ready(function()
 			let words_container=$(clone).find(".rhyming_words_container");
 			let word=rhyming_words_array[i];
 			words_container.append(
-				"<span class='rhyming_word'>"+word+"</span]>"		
+				"<span class='rhyming_word' title='double click to find phrases with this word'>"+word+"</span]>"		
 			)
 			
 			if((i+1)%5==0)
