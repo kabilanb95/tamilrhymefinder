@@ -3,6 +3,7 @@ package com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.pages;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
@@ -58,12 +59,33 @@ public class MoviesListPage
 		
 		for(String movie_url : movie_urls)
 		{
-			document=Jsoup.connect(movie_url).get();
-			logger.info("Current movie url :"+movie_url);
-			words.addAll(MoviePage.getWordsByScrapingAllSongsInCurrentMoviePage(document));
-			logger.info("Scraping song lyrics completed for movie url :"+movie_url);
+			try
+			{
+				document=Jsoup.connect(movie_url).get();
+				logger.info("Current movie url :"+movie_url);
+				words.addAll(MoviePage.getWordsByScrapingAllSongsInCurrentMoviePage(document));
+				logger.info("Scraping song lyrics completed for movie url :"+movie_url);				
+			}
+			catch(Exception e)
+			{
+				logger.log(Level.SEVERE,"Could not scrape all the movies in this page",e);
+			}
 		}
 		
 		return words;
+	}
+	
+	public static void scrapeLyricsOfAllMoviesInCurrentMovieListPage(Document document) throws IOException, InterruptedException
+	{		
+		HashSet<String> movie_urls=MoviesListPage.getAllMoviesURLSInCurrentPage(document);
+		logger.info("All movie URLS in this page : "+movie_urls.toString());
+		
+		for(String movie_url : movie_urls)
+		{
+			document=Jsoup.connect(movie_url).get();
+			logger.info("Current movie url :"+movie_url);
+			MoviePage.scrapeLyricsOfAllSongsInCurrentMoviePage(document);
+			logger.info("Scraping song lyrics completed for movie url :"+movie_url);
+		}
 	}
 }

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.jsoup.nodes.Document;
 
+import com.arkmusic.tamilrhymefinder.scraping.JSoupUtil;
 import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.Tamil2LyricsScraper;
 
 public class SongPage 
@@ -48,4 +49,13 @@ public class SongPage
 	{
 		return document.select("#English").first().text().split(MUSIC_BY_TEXT)[1].replace(MALE_SINGER_DESCRIPTION, "").replace(FEMALE_SINGER_DESCRIPTION, "").trim();
 	}
+	
+	public static String getLyricsWithFormatting(Document document)
+	{
+		String html=document.select("#English").first().html();
+		String text=JSoupUtil.getFormattedTextFromHTML(html);
+		return text.split(MUSIC_BY_TEXT)[1].replace(MALE_SINGER_DESCRIPTION, "").replace(FEMALE_SINGER_DESCRIPTION, "").trim();
+		
+	}
+
 }

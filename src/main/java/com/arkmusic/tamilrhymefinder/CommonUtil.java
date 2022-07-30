@@ -20,7 +20,13 @@ public class CommonUtil
 	{
 		return str.replaceAll("\\s+","");
 	}
-	
+
+	//removes all multiple whitespaces with single space
+	public static String trim(String str)
+	{
+		return str.replaceAll("\\s+"," ");
+	}
+
 	public static String getLastNCharsIfInputStringIsSmallerThanNReturnNull(String str,int n)
 	{
 		return str.length() > n ? str.substring(str.length() - n) : null;
