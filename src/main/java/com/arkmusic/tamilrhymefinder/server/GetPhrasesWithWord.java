@@ -66,6 +66,7 @@ public class GetPhrasesWithWord extends HttpServlet
         	String word=request.getParameter(URL_PARAM_WORD);
         	String language_str=request.getParameter(URL_PARAM_LANGUAGE);
         	Language language=Language.getLanguageByUniqueName(language_str);
+        	word=word.toLowerCase();
         	
         	JSONObject json=new JSONObject();
         	json.put(URL_PARAM_WORD,word);
