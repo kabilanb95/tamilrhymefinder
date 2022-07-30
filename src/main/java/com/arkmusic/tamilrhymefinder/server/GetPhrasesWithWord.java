@@ -12,9 +12,11 @@ import org.json.JSONObject;
 
 import com.arkmusic.tamilrhymefinder.server.gson.GsonUtil;
 import com.arkmusic.tamilrhymefinder.server.gson.responses.ServerError;
+import com.arkmusic.tamilrhymefinder.server.phrases.PhraseNotFoundException;
+import com.arkmusic.tamilrhymefinder.server.phrases.Phrases;
 import com.arkmusic.tamilrhymefinder.server.words.RhymingWords;
 
-public class GetRhymingWords extends HttpServlet 
+public class GetPhrasesWithWord extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +25,7 @@ public class GetRhymingWords extends HttpServlet
 	URL_PARAM_WORD="word"
 	;
        
-    public GetRhymingWords() 
+    public GetPhrasesWithWord() 
     {
         super();
     }
@@ -58,20 +60,31 @@ public class GetRhymingWords extends HttpServlet
     		out.flush();
     		return;
     	}
-
-    	String word=request.getParameter(URL_PARAM_WORD);
-    	String language_str=request.getParameter(URL_PARAM_LANGUAGE);
-    	Language language=Language.getLanguageByUniqueName(language_str);
     	
-    	JSONObject json=new JSONObject();
-    	json.put(URL_PARAM_WORD,word);
-    	json.put(URL_PARAM_LANGUAGE,language.unique_name);
-    	json.put("rhyming_words",RhymingWords.getRhymingWords(word, language));
-    	
-		response.setStatus(HttpServletResponse.SC_OK);
-		
-		out.print(json.toString());
-		out.flush();
+    	try
+		{
+        	String word=request.getParameter(URL_PARAM_WORD);
+        	String language_str=request.getParameter(URL_PARAM_LANGUAGE);
+        	Language language=Language.getLanguageByUniqueName(language_str);
+        	
+        	JSONObject json=new JSONObject();
+        	json.put(URL_PARAM_WORD,word);
+        	json.put(URL_PARAM_LANGUAGE,language.unique_name);
+        	json.put("phrases",Phrases.getPhrases(word, language));
+        	
+    		response.setStatus(HttpServletResponse.SC_OK);			
+    		out.print(json.toString());
+    		out.flush();
+    		return;
+		}
+		catch(PhraseNotFoundException e)
+		{
+    		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    		ServerError error=new ServerError(ErrorCodes.PHRASE_NOT_FOUND,e.getMessage());
+    		out.print(GsonUtil.serialize(error));
+    		out.flush();
+    		return;
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import com.arkmusic.tamilrhymefinder.server.phrases.PhraseCacherManager;
+import com.arkmusic.tamilrhymefinder.server.phrases.PhraseManager;
 import com.arkmusic.tamilrhymefinder.server.words.RhymeCacherManager;
 import com.arkmusic.tamilrhymefinder.server.words.WordsManager;
 
@@ -29,6 +31,8 @@ public class ServerInit extends HttpServlet
       {
     	  WordsManager.init();
     	  RhymeCacherManager.init();
+    	  PhraseManager.init();
+    	  PhraseCacherManager.init();
       }
       catch (IOException e) 
       {

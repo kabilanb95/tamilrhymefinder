@@ -1,16 +1,17 @@
-package com.arkmusic.tamilrhymefinder.server.words;
+package com.arkmusic.tamilrhymefinder.server;
 
 public enum Language 
 {
-    TAMIL("tamil","tamil.txt")
+    TAMIL("tamil","words_tamil.txt","phrases_tamil.json")
     ;
 
-    public String unique_name,wordset_filepath;
+    public String unique_name,wordset_filepath,phrasejson_filepath;
     
-    private Language(String unique_name,String wordset_filepath)
+    private Language(String unique_name,String wordset_filepath,String phrasejson_filepath)
     {
         this.unique_name = unique_name;
         this.wordset_filepath = wordset_filepath;
+        this.phrasejson_filepath = phrasejson_filepath;
     }
     
     public static boolean isValidLanguage(String language_unique_name)

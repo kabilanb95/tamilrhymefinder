@@ -2,6 +2,8 @@ package com.arkmusic.tamilrhymefinder.server.words;
 
 import java.util.TreeMap;
 
+import com.arkmusic.tamilrhymefinder.server.Language;
+
 public class RhymeCacherManager 
 {
 	private static TreeMap<Language, RhymeCacher> rhyme_cache_manager;
