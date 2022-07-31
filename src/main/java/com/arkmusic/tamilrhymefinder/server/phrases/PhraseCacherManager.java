@@ -1,5 +1,6 @@
 package com.arkmusic.tamilrhymefinder.server.phrases;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import com.arkmusic.tamilrhymefinder.server.Language;
@@ -8,7 +9,7 @@ public class PhraseCacherManager
 {
 	private static HashMap<Language, PhraseCacher> phrase_cacher_manager;
 	
-	public static void init()
+	public static void init() throws IOException
 	{
 		phrase_cacher_manager=new HashMap<Language, PhraseCacher>();
 		
