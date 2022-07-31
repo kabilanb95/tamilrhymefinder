@@ -24,7 +24,7 @@ public class Tamil2LyricsScraper
 
 	public static final String RESOURCE_FOLDER_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/";
 	public static final String ALL_WORDS_SCRAPED_FILE_PATH=RESOURCE_FOLDER_PATH+"tamil.txt";
-	public static final String ALL_PHRASES_SCRAPED_JSON_FILE_PATH=RESOURCE_FOLDER_PATH+"tamil_phrases_map.json";
+	public static final String ALL_PHRASES_SCRAPED_JSON_FILE_PATH=RESOURCE_FOLDER_PATH+"phrases_tamil.json";
 
 	private static TreeSet<String> word_set=null;
 	private static JSONObject word_to_phrase_json=null;
@@ -43,7 +43,7 @@ public class Tamil2LyricsScraper
 
 	//Scraper
 	
-	//to do scrape pages:21,26,41,45,68,79,95 - continue from 95
+	//to do scrape pages:21,26,41,45,68,79,95 - continue from 132
 	
 	public static void scrapeAndStoreAllPhrases() throws IOException
 	{
@@ -64,8 +64,14 @@ public class Tamil2LyricsScraper
 		
 		logger.info("Total of "+last_page_index+" pages were found, Going to scrape them one by one");
 		
-		for(int i=2;i<=last_page_index;i++)
-		{			
+		for(int i=1;i<=last_page_index;i++)
+		{		
+			boolean is_run=i>162;
+			if(!is_run)
+			{
+				continue;
+			}
+			
 			try 
 			{
 				String movie_list_page_url=MoviesListPage.getListURLByIndex(i);

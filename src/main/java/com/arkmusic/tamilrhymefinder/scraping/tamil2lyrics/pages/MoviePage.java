@@ -59,11 +59,18 @@ public class MoviePage
 		HashSet<String> song_urls=MoviePage.getAllSongURLS(document);
 		for(String song_url : song_urls)
 		{
-			document=Jsoup.connect(song_url).get();
-			logger.info("Current song url page :"+song_url);
-			String lyrics=SongPage.getLyricsWithFormatting(document);
-			Tamil2LyricsScraper.writeLyricsToFile(lyrics);
-			Thread.sleep(Tamil2LyricsScraper.WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS*1000);//To avoid DDOS blocking
+			try
+			{
+				document=Jsoup.connect(song_url).get();
+				logger.info("Current song url page :"+song_url);
+				String lyrics=SongPage.getLyricsWithFormatting(document);
+				Tamil2LyricsScraper.writeLyricsToFile(lyrics);
+				Thread.sleep(Tamil2LyricsScraper.WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS*1000);//To avoid DDOS blocking
+			}
+			catch(Exception e)
+			{
+				logger.log(Level.SEVERE,"Unable to get scrape song from movie",e);
+			}
 		}
 	}
 }

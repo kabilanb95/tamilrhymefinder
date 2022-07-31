@@ -82,10 +82,17 @@ public class MoviesListPage
 		
 		for(String movie_url : movie_urls)
 		{
-			document=Jsoup.connect(movie_url).get();
-			logger.info("Current movie url :"+movie_url);
-			MoviePage.scrapeLyricsOfAllSongsInCurrentMoviePage(document);
-			logger.info("Scraping song lyrics completed for movie url :"+movie_url);
+			try
+			{
+				document=Jsoup.connect(movie_url).get();
+				logger.info("Current movie url :"+movie_url);
+				MoviePage.scrapeLyricsOfAllSongsInCurrentMoviePage(document);
+				logger.info("Scraping song lyrics completed for movie url :"+movie_url);			
+			}
+			catch(Exception e)
+			{
+				logger.log(Level.SEVERE,"Could not scrape all the movies in this page",e);
+			}
 		}
 	}
 }
