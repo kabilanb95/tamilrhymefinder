@@ -26,7 +26,11 @@ public class GsonUtil
 	
 	public static HashMap<String, HashSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
 	{
-		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>();
+		//using initial capacity to avoid GC error inside heroku dyno
+		int expected_keys_in_json=200000;//for the tamil json alone, refactor this code later
+		int initial_capacity=(int)(expected_keys_in_json / 0.75) + 1;
+		
+		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>(initial_capacity);
 		
 		JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream(json_file_path), "UTF-8"));
 		reader.beginObject();
