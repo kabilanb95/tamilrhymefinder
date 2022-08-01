@@ -42,9 +42,6 @@ public class Tamil2LyricsScraper
 	}
 
 	//Scraper
-	
-	//to do scrape pages:21,26,41,45,68,79,95 - continue from 132
-	
 	public static void scrapeAndStoreAllPhrases() throws IOException
 	{
 		if(IS_CONTINUE_SCRAPING)
@@ -53,7 +50,7 @@ public class Tamil2LyricsScraper
 			word_to_phrase_json=new JSONObject(word_to_phrase_json_str);
 			logger.info("Phrases JSON was loaded from file with "+word_to_phrase_json.keySet().size()+" words");
 		}
-		else 
+		else
 		{
 			word_to_phrase_json=new JSONObject();
 		}
