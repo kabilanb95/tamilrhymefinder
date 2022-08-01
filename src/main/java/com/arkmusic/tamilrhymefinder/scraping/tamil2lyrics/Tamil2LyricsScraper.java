@@ -23,7 +23,7 @@ public class Tamil2LyricsScraper
 	public static int WAIT_TIME_BETWEEN_EACH_PAGE_IN_SECONDS=4;
 
 	public static final String RESOURCE_FOLDER_PATH="/Users/kabilan-5523/Documents/myherokuapps/tamilrhymefinder/src/main/resources/";
-	public static final String ALL_WORDS_SCRAPED_FILE_PATH=RESOURCE_FOLDER_PATH+"tamil.txt";
+	public static final String ALL_WORDS_SCRAPED_FILE_PATH=RESOURCE_FOLDER_PATH+"words_tamil.txt";
 	public static final String ALL_PHRASES_SCRAPED_JSON_FILE_PATH=RESOURCE_FOLDER_PATH+"phrases_tamil.json";
 
 	private static TreeSet<String> word_set=null;

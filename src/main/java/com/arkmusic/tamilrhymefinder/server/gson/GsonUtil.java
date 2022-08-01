@@ -30,7 +30,7 @@ public class GsonUtil
 	
 	public static HashMap<String, HashSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
 	{		
-		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>(500000);
+		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>();
 		
 		JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream(json_file_path), "UTF-8"));
 		reader.beginObject();
