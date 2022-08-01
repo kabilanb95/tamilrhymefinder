@@ -5,15 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.logging.Logger;
 
 import org.json.JSONObject;
 
+import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.Tamil2LyricsScraper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 
 public class GsonUtil 
 {
+	private static Logger logger=Logger.getLogger(GsonUtil.class.getName());
+
 	public static JSONObject serialize(Object object)
 	{
 		return new JSONObject(new Gson().toJson(object));
@@ -25,12 +29,9 @@ public class GsonUtil
 	}
 	
 	public static HashMap<String, HashSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
-	{
-		//using initial capacity to avoid GC error inside heroku dyno
-		int expected_keys_in_json=200000;//for the tamil json alone, refactor this code later
-		int initial_capacity=(int)(expected_keys_in_json / 0.75) + 1;
-		
-		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>(initial_capacity);
+	{		
+		int keys_iterated=0;
+		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>(500000);
 		
 		JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream(json_file_path), "UTF-8"));
 		reader.beginObject();
@@ -46,6 +47,7 @@ public class GsonUtil
 	        { 
 	        	current_key=reader.nextName();
 	        	map.put(current_key,new HashSet<String>());
+	        	logger.info(""+keys_iterated);
 	        }
 	        if(token.equals(JsonToken.BEGIN_ARRAY)) 
 	        {
