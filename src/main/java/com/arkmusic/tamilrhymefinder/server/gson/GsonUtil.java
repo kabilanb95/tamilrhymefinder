@@ -30,7 +30,6 @@ public class GsonUtil
 	
 	public static HashMap<String, HashSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
 	{		
-		int keys_iterated=0;
 		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>(500000);
 		
 		JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream(json_file_path), "UTF-8"));
@@ -47,7 +46,6 @@ public class GsonUtil
 	        { 
 	        	current_key=reader.nextName();
 	        	map.put(current_key,new HashSet<String>());
-	        	logger.info(""+keys_iterated);
 	        }
 	        if(token.equals(JsonToken.BEGIN_ARRAY)) 
 	        {
