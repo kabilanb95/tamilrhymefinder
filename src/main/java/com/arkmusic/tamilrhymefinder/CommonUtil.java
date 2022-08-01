@@ -29,17 +29,17 @@ public class CommonUtil
 
 	public static String getLastNCharsIfInputStringIsSmallerThanNReturnNull(String str,int n)
 	{
-		return str.length() > n ? str.substring(str.length() - n) : null;
+		return str.length() >= n ? str.substring(str.length() - n) : null;
 	}
 
 	public static String getLastNCharsIfInputStringIsSmallerThanNReturnInput(String str,int n)
 	{
-		return str.length() > n ? str.substring(str.length() - n) : str;
+		return str.length() >= n ? str.substring(str.length() - n) : str;
 	}
 
 	public static String getLastNCharsIfInputStringIsSmallerThanNThrowException(String str,int n)
 	{
-		if(str.length() > n)
+		if(str.length() >= n)
 		{
 			return str.substring(str.length() - n);
 		}
