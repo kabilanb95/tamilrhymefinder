@@ -91,5 +91,4 @@ public class RhymeCacher
 	{
 		return rhyme_map.containsKey(rhyme);
 	}
-
 }

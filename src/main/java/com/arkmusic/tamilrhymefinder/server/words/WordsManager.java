@@ -5,6 +5,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import com.arkmusic.tamilrhymefinder.CommonUtil;
+import com.arkmusic.tamilrhymefinder.MapDBUtil;
 import com.arkmusic.tamilrhymefinder.server.Language;
 import com.arkmusic.tamilrhymefinder.server.ResourceUtil;
 
@@ -14,7 +15,7 @@ public class WordsManager
 
 	public static void init() throws IOException
 	{
-		TAMIL_WORDS=CommonUtil.commanSeperatedStringToTreeSet(ResourceUtil.getFileAsStringFromResourcesFolder(Language.TAMIL.wordset_filepath));
+		TAMIL_WORDS=MapDBUtil.getAllWords(Language.TAMIL);
 	}
 	
 	public static TreeSet<String> getWordsOfLanguage(Language language)
