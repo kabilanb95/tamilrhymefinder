@@ -60,6 +60,7 @@ public class GetRhymingWords extends HttpServlet
     	}
 
     	String word=request.getParameter(URL_PARAM_WORD);
+    	word=word.toLowerCase();
     	String language_str=request.getParameter(URL_PARAM_LANGUAGE);
     	Language language=Language.getLanguageByUniqueName(language_str);
     	
