@@ -1,10 +1,9 @@
 package com.arkmusic.tamilrhymefinder.server.phrases;
 
-import java.io.IOException;
 import java.util.TreeSet;
 
-import com.arkmusic.tamilrhymefinder.MapDBUtil;
 import com.arkmusic.tamilrhymefinder.server.Language;
+import com.arkmusic.tamilrhymefinder.server.mapdb.MapDBUtil;
 
 public class PhraseCacher
 {	

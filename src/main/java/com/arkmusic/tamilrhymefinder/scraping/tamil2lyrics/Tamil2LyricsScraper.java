@@ -1,8 +1,6 @@
 package com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics;
 
 import java.io.IOException;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -175,7 +173,7 @@ public class Tamil2LyricsScraper
 		}
 		
 		word_set.addAll(words);
-		FileUtil.writeStringToFile(ALL_WORDS_SCRAPED_FILE_PATH, CommonUtil.toCommanSeperatedString(word_set));
+		FileUtil.writeStringToFile(ALL_WORDS_SCRAPED_FILE_PATH, CommonUtil.removeAllWhiteSpaces(CommonUtil.toCommanSeperatedString(word_set)));
 		logger.info("Writing to file success!!");
 	}
 		

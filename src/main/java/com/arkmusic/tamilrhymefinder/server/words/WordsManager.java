@@ -1,13 +1,10 @@
 package com.arkmusic.tamilrhymefinder.server.words;
 
 import java.io.IOException;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
-import com.arkmusic.tamilrhymefinder.CommonUtil;
-import com.arkmusic.tamilrhymefinder.MapDBUtil;
 import com.arkmusic.tamilrhymefinder.server.Language;
-import com.arkmusic.tamilrhymefinder.server.ResourceUtil;
+import com.arkmusic.tamilrhymefinder.server.mapdb.MapDBUtil;
 
 public class WordsManager 
 {

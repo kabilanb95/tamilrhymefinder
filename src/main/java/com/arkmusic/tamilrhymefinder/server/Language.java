@@ -2,14 +2,13 @@ package com.arkmusic.tamilrhymefinder.server;
 
 public enum Language
 {
-	TAMIL("tamil","db/tamil/tamil.db");
+	TAMIL("tamil");
 
-	public String unique_name, db_file_path;
+	public String unique_name;
 
-	private Language(String unique_name,String db_file_path)
+	private Language(String unique_name)
 	{
 		this.unique_name = unique_name;
-		this.db_file_path = db_file_path;
 
 	}
 

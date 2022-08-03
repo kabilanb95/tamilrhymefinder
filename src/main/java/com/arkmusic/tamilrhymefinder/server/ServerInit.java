@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.arkmusic.tamilrhymefinder.MapDBUtil;
+import com.arkmusic.tamilrhymefinder.server.mapdb.MapDBUtil;
 import com.arkmusic.tamilrhymefinder.server.phrases.PhraseCacherManager;
 import com.arkmusic.tamilrhymefinder.server.words.RhymeCacherManager;
 import com.arkmusic.tamilrhymefinder.server.words.WordsManager;
@@ -29,7 +29,7 @@ public class ServerInit extends HttpServlet
       logger.info("---------- ServerInit Initialized process started successfully ----------");
       try 
       {
-    	  MapDBUtil.init();
+    	  MapDBUtil.init();    	  
     	  WordsManager.init();
     	  RhymeCacherManager.init();
     	  PhraseCacherManager.init();

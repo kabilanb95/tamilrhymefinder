@@ -3,13 +3,12 @@ package com.arkmusic.tamilrhymefinder.server.gson;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import org.json.JSONObject;
 
-import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.Tamil2LyricsScraper;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -28,9 +27,9 @@ public class GsonUtil
 		return new Gson().fromJson(json, classOfT);
 	}
 	
-	public static HashMap<String, HashSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
+	public static TreeMap<String, TreeSet<String>> getHugeJSONAsHashMap(String json_file_path) throws IOException
 	{		
-		HashMap<String, HashSet<String>> map=new HashMap<String, HashSet<String>>();
+		TreeMap<String, TreeSet<String>> map=new TreeMap<String, TreeSet<String>>();
 		
 		JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream(json_file_path), "UTF-8"));
 		reader.beginObject();
@@ -45,7 +44,7 @@ public class GsonUtil
 	        if(token.equals(JsonToken.NAME)) 
 	        { 
 	        	current_key=reader.nextName();
-	        	map.put(current_key,new HashSet<String>());
+	        	map.put(current_key,new TreeSet<String>());
 	        }
 	        if(token.equals(JsonToken.BEGIN_ARRAY)) 
 	        {

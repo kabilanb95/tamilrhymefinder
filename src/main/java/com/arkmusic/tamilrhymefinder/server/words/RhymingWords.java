@@ -1,6 +1,5 @@
 package com.arkmusic.tamilrhymefinder.server.words;
 
-import java.util.HashSet;
 import java.util.TreeSet;
 
 import org.json.JSONArray;

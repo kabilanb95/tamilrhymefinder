@@ -2,7 +2,6 @@ package com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.pages;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,8 +9,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.Tamil2LyricsScraper;
 
 public class MoviesListPage 
 {

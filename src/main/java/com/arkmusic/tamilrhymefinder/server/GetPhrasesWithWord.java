@@ -14,7 +14,6 @@ import com.arkmusic.tamilrhymefinder.server.gson.GsonUtil;
 import com.arkmusic.tamilrhymefinder.server.gson.responses.ServerError;
 import com.arkmusic.tamilrhymefinder.server.phrases.PhraseNotFoundException;
 import com.arkmusic.tamilrhymefinder.server.phrases.Phrases;
-import com.arkmusic.tamilrhymefinder.server.words.RhymingWords;
 
 public class GetPhrasesWithWord extends HttpServlet 
 {

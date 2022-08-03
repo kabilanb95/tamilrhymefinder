@@ -5,12 +5,11 @@ import java.util.TreeSet;
 
 public class CommonUtil 
 {
-	public static String toCommanSeperatedString(TreeSet<String> hashset)
+	public static String toCommanSeperatedString(TreeSet<String> set)
 	{
-		String str=hashset.toString().replace("[", "").replace("]", "").trim();
-		return removeAllWhiteSpaces(str);
+		return set.toString().replace("[", "").replace("]", "").trim();
 	}
-
+	
 	public static TreeSet<String> commanSeperatedStringToTreeSet(String comma_seperated_string)
 	{
 		return new TreeSet<String>(Arrays.asList(comma_seperated_string.split(",")));
