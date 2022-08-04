@@ -72,6 +72,11 @@ public class MapDBUtil
 			
 			for(String word : phrases_hashmap.keySet())
 			{
+				if(isInvalidWord(word))
+				{
+					continue;
+				}
+				
 				addPhrasesToWord(language, word, new TreeSet<String>(phrases_hashmap.get(word)));
 				addWord(language,word);
 				
@@ -85,8 +90,14 @@ public class MapDBUtil
 			
 			db_managers_by_language.get(language).endWriteMode();
 		}
+		
+		private static boolean isInvalidWord(String word)
+		{
+			//to ignore nonsensical words like PAYANAMAAAAAA, AAAGAM, sakkkara
+			return word.matches(".+(.)\\1{2,}.+") || word.matches("(.)\\1{2,}.+") || word.matches(".+(.)\\1{2,}");
+		}
 	}
-	
+
 	/*
 	
 	Migration Script Sample Code

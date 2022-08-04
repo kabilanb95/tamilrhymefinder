@@ -1,5 +1,6 @@
 package com.arkmusic.tamilrhymefinder.server.words;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import org.json.JSONArray;
@@ -22,9 +23,16 @@ public class RhymingWords
 		{
 			TreeSet<String> rhyming_word_set=rhyme_cacher.getRhymingWordsByNLastChars(word, last_n_char_index);
 			rhyming_word_set.removeAll(rhyming_words_added_to_response_till_now);
-			rhyming_words.put(last_n_char_index+"", new JSONArray(rhyming_word_set.toString()));
+			
+			//Custom sorting order for better UX
+			ArrayList<String> rhyming_words_list=new ArrayList<String>(rhyming_word_set);
+			WordProcessor.sortListAccordingToSyllablesDeviationFromInputWord(word, rhyming_words_list);
+			rhyming_words.put(last_n_char_index+"", new JSONArray(rhyming_words_list.toString()));
+			
 			rhyming_words_added_to_response_till_now.addAll(rhyming_word_set);
 		}
+		
+		
 		
 		return rhyming_words;
 	}
