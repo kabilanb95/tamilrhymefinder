@@ -1,6 +1,6 @@
 package com.arkmusic.tamilrhymefinder.server.words;
 
-public class PhoneticallySimilarWords 
+public class PhoneticallySimilarWords
 {
 
 }

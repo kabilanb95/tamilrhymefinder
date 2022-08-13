@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.arkmusic.tamilrhymefinder.scraping.FileUtil;
 
-public class ResourceUtil 
+public class ResourceUtil
 {
 	private static String getFilePath(String relative_file_path_from_resources_folder)
 	{
@@ -15,15 +15,15 @@ public class ResourceUtil
 		}
 		return ResourceUtil.class.getClassLoader().getResource(relative_file_path_from_resources_folder).getFile();
 	}
-	
-	public static String getDBPath(Language language,String db_file_name)
+
+	public static String getDBPath(Language language, String db_file_name)
 	{
-		return getFilePath("")+"db/"+language.unique_name+"/"+db_file_name;
+		return getFilePath("") + "db/" + language.unique_name + "/" + db_file_name;
 	}
-	
+
 	public static String getFileAsStringFromResourcesFolder(String relative_file_path_from_resources_folder) throws IOException
 	{
-		String file_str=FileUtil.getFileAsString(getFilePath(relative_file_path_from_resources_folder));
+		String file_str = FileUtil.getFileAsString(getFilePath(relative_file_path_from_resources_folder));
 		return file_str;
 	}
 }

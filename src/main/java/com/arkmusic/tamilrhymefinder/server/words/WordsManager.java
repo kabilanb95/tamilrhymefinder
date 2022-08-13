@@ -6,22 +6,22 @@ import java.util.TreeSet;
 import com.arkmusic.tamilrhymefinder.server.Language;
 import com.arkmusic.tamilrhymefinder.server.mapdb.MapDBUtil;
 
-public class WordsManager 
+public class WordsManager
 {
 	private static TreeSet<String> TAMIL_WORDS;
 
 	public static void init() throws IOException
 	{
-		TAMIL_WORDS=MapDBUtil.getAllWords(Language.TAMIL);
+		TAMIL_WORDS = MapDBUtil.getAllWords(Language.TAMIL);
 	}
-	
+
 	public static TreeSet<String> getWordsOfLanguage(Language language)
 	{
-		if(language==Language.TAMIL)
+		if(language == Language.TAMIL)
 		{
 			return TAMIL_WORDS;
 		}
-		
-		throw new RuntimeException("Unsupported language : "+language);
+
+		throw new RuntimeException("Unsupported language : " + language);
 	}
 }

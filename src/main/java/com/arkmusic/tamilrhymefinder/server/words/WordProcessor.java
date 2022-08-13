@@ -7,7 +7,7 @@ public class WordProcessor
 {
 	public static void sortListAccordingToSyllablesDeviationFromInputWord(String input_word, ArrayList<String> words_list)
 	{
-		Collections.sort(words_list,new SyllableComparator(getSyllables(input_word)));
+		Collections.sort(words_list, new SyllableComparator(getSyllables(input_word)));
 	}
 
 	public static int getSyllables(String word)
