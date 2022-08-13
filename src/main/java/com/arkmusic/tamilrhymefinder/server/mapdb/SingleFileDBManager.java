@@ -2,6 +2,7 @@ package com.arkmusic.tamilrhymefinder.server.mapdb;
 
 import java.util.NavigableSet;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
@@ -34,6 +35,8 @@ public class SingleFileDBManager implements DBManager
 
 	private boolean is_write_mode = false;
 
+	private static Logger logger = Logger.getLogger(SingleFileDBManager.class.getName());
+
 	public SingleFileDBManager(Language language)
 	{
 		this.language = language;
@@ -44,10 +47,11 @@ public class SingleFileDBManager implements DBManager
 	{
 		if(!Configuration.IS_JSON_TO_DB_MIGRATION_MODE)
 		{
-			initPhraseMapsByAlphabet(true);
+			initPhraseMap(true);
 		}
 
 		String file_path = ResourceUtil.getDBPath(this.language, WORD_SET_DB_FILE_NAME);
+
 		if(Configuration.IS_USE_UNSTABLE_BUT_FAST_DB)
 		{
 			wordset_db = DBMaker.fileDB(file_path).make();
@@ -60,7 +64,7 @@ public class SingleFileDBManager implements DBManager
 		wordset = wordset_db.treeSet(WORD_SET).serializer(Serializer.STRING).createOrOpen();
 	}
 
-	private void initPhraseMapsByAlphabet(boolean is_readable_volume)
+	private void initPhraseMap(boolean is_readable_volume)
 	{
 		Volume volume = (is_readable_volume ? this.readable_phrases_volume : this.writable_phrases_volume);
 
@@ -94,10 +98,17 @@ public class SingleFileDBManager implements DBManager
 			throw new RuntimeException("Please set to write mode before this operation");
 		}
 
-		String alphabet = "" + word.charAt(0);
 		word = word.toLowerCase();
 
-		writable_phrase_map.put(word, CommonUtil.toCommanSeperatedString(phrases));
+		try
+		{
+			writable_phrase_map.put(word, CommonUtil.toCommanSeperatedString(phrases));
+		}
+		catch(java.lang.AssertionError e)
+		{
+			logger.info("Could not add to DB. word '" + word + "', phrases :" + CommonUtil.toCommanSeperatedString(phrases));
+			throw e;
+		}
 	}
 
 	public TreeSet<String> getPhrases(String word)
@@ -117,7 +128,7 @@ public class SingleFileDBManager implements DBManager
 			throw new RuntimeException("Already in write mode!!");
 		}
 
-		initPhraseMapsByAlphabet(false);
+		initPhraseMap(false);
 
 		this.is_write_mode = true;
 	}

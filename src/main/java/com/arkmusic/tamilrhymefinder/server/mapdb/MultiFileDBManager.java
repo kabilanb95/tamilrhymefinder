@@ -3,6 +3,7 @@ package com.arkmusic.tamilrhymefinder.server.mapdb;
 import java.util.NavigableSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
@@ -19,6 +20,8 @@ import com.arkmusic.tamilrhymefinder.server.phrases.PhraseNotFoundException;
 
 public class MultiFileDBManager implements DBManager
 {
+	private static Logger logger = Logger.getLogger(MultiFileDBManager.class.getName());
+
 	private static final String[] ALPHABETS = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
 	private static final String PHRASE_MAP_DB_FILE_NAME = "phrasemap_<alphabet>.db";
@@ -113,7 +116,15 @@ public class MultiFileDBManager implements DBManager
 
 		SortedTableMap.Sink<String, String> writable_phrase_map = writable_phrase_maps_by_alphabet.get(alphabet);
 
-		writable_phrase_map.put(word, CommonUtil.toCommanSeperatedString(phrases));
+		try
+		{
+			writable_phrase_map.put(word, CommonUtil.toCommanSeperatedString(phrases));
+		}
+		catch(java.lang.AssertionError e)
+		{
+			logger.info("Could not add to DB. word '" + word + "', phrases :" + CommonUtil.toCommanSeperatedString(phrases));
+			throw e;
+		}
 
 		writable_phrase_maps_by_alphabet.put(alphabet, writable_phrase_map);
 	}

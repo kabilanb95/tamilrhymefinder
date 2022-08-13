@@ -2,7 +2,9 @@ package com.arkmusic.tamilrhymefinder.server;
 
 public enum Language
 {
-	TAMIL("tamil");
+	TAMIL("tamil")
+//	HINDI("hindi")
+	;
 
 	public String unique_name;
 

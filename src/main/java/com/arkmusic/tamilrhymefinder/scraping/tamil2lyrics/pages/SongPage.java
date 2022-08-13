@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.jsoup.nodes.Document;
 
+import com.arkmusic.tamilrhymefinder.CommonUtil;
 import com.arkmusic.tamilrhymefinder.scraping.JSoupUtil;
 import com.arkmusic.tamilrhymefinder.scraping.tamil2lyrics.Tamil2LyricsScraper;
 
@@ -20,23 +21,10 @@ public class SongPage
 	;
 	
 	public static TreeSet<String> getWordsFromSongPage(Document document) throws IOException
-	{
-		TreeSet<String> words=new TreeSet<String>();
-		
-		String lyrics=getLyrics(document);
-		lyrics=lyrics.replace("\n", " ").replace("\r", " ");
-		
-		for(String word : lyrics.split(" "))
-		{
-			word=word.toLowerCase();
-			word=word.replaceAll("[^a-zA-Z]+", "");//replace all non alphabetics
-			word=word.trim();
-			if(!word.trim().equals(""))
-			{
-				words.add(word);				
-			}
-		}
-		
+	{		
+		String lyrics=getLyrics(document);		
+		TreeSet<String> words=CommonUtil.getWordsFromLyrics(lyrics);
+	
 		logger.info("Got words from the page "+document.location()+" -->"+words.toString());
 		
 		//nothing will happen if Tamil2LyricsScraper.IS_WRITE_TO_FILE equals false

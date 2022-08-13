@@ -16,4 +16,10 @@ public class FileUtil
     {
 		return FileUtils.readFileToString(new File(path), "UTF-8");
     }
+    
+    public static boolean delete(String path)
+    {
+        File fileToDelete = FileUtils.getFile(path);
+        return FileUtils.deleteQuietly(fileToDelete);	
+    }
 }
