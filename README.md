@@ -42,7 +42,7 @@ As the project's word database grew significantly with words, rhymes, and phrase
 I swiftly developed code using a hashmap to store the possible rhymes as keys and the corresponding words with those rhymes as values. This implementation demonstrated remarkable performance and retrieval speed, operating at O(1) complexity. On my local machine, the code worked seamlessly, providing quick access to the relevant data.
 
 ### Deployment Challenges
-However, the real challenge arose when deploying the code to free hosting servers like heroku.com and render.com. Upon running the server on these platforms, I encountered a surprising setback—the server wouldn't even start. It became evident that the hashmap-based approach required a more optimized and memory-efficient solution.
+However, the real challenge arose when deploying the code to free hosting servers like heroku.com and render.com which has a very limited amount of RAM and processing power. Upon running the server on these platforms, I encountered a surprising setback—the server wouldn't even start. It became evident that the hashmap-based approach required a more optimized and memory-efficient solution.
 
 ### Striving for Efficiency
 To make the server more efficient and overcome memory constraints, I needed to rethink the data storage strategy while retaining O(1) retrieval performance. I explored various alternatives, such as storing the data in a file with a custom format. However, I found these solutions lacking, as they either compromised performance or fell short in handling the massive dataset.
