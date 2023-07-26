@@ -1,5 +1,7 @@
 # Tamil Rhyme Finder and Phrase Generator
 
+**Live at: [tamilrhymefinder.onrender.com](https://tamilrhymefinder.onrender.com)**
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -26,32 +28,32 @@ To address this void and cater to fellow Tamil lyricists, I embarked on a journe
 
 In this section, we'll delve into the intricacies of the code design and architecture behind the tool. While the project aims to provide a robust and user-friendly tool for Tamil lyricists, you might have noticed aspects of the code that appear unusual or seemingly over-engineered. We'll address these observations and shed light on the reasoning behind the choices made during development. Let me tell me the story of how I wrote the code.
 
-## Scraping Words and Phrases
+### Scraping Words and Phrases
 
 As a seasoned Selenium expert, scraping words and phrases from various sources was relatively smooth, thanks to the power of BeautifulSoup. Within a few hours, I was able to collect a rich dataset of Tamil words and phrases, which formed the backbone of the rhyme finder and phrase generator.
 
-## Server Module: Efficient Data Storage and Retrieval
+### Server Module: Efficient Data Storage and Retrieval
 The server module of the Tamil Rhyme Finder and Phrase Generator is a critical component responsible for efficiently storing and retrieving a vast dataset of words, rhymes, and phrases. Building this module presented several challenges, but with determination and creativity, I found a robust solution to ensure both performance and scalability.
 
-## Initial Hurdles
+### Initial Hurdles
 As the project's word database grew significantly with words, rhymes, and phrases in Tamil, relying on a free online SQL database was no longer feasible due to its storage limitations. To address this constraint, I decided to implement a custom solution using a hashmap.
 
-## Hashmap-Based Storage
+### Hashmap-Based Storage
 I swiftly developed code using a hashmap to store the possible rhymes as keys and the corresponding words with those rhymes as values. This implementation demonstrated remarkable performance and retrieval speed, operating at O(1) complexity. On my local machine, the code worked seamlessly, providing quick access to the relevant data.
 
-## Deployment Challenges
+### Deployment Challenges
 However, the real challenge arose when deploying the code to free hosting servers like heroku.com and render.com. Upon running the server on these platforms, I encountered a surprising setback—the server wouldn't even start. It became evident that the hashmap-based approach required a more optimized and memory-efficient solution.
 
-## Striving for Efficiency
+### Striving for Efficiency
 To make the server more efficient and overcome memory constraints, I needed to rethink the data storage strategy while retaining O(1) retrieval performance. I explored various alternatives, such as storing the data in a file with a custom format. However, I found these solutions lacking, as they either compromised performance or fell short in handling the massive dataset.
 
-## MapDB to the Rescue
+### MapDB to the Rescue
 After persistent efforts, I discovered a lifesaver—MapDB. Leveraging MapDB as the underlying storage mechanism transformed the project. MapDB provided the optimal balance between performance, memory usage, and data integrity. I rewrote the code using MapDB, and once again, it worked flawlessly on my local machine.
 
-## Dealing with Large Files
+### Dealing with Large Files
 However, when I attempted to push the code to the hosting server, a new challenge emerged. The MapDB file containing the entire dataset became too large for the hosting environment. To resolve this, I devised a clever approach by supporting multiple MapDB files, each storing data for a specific alphabet. By segmenting the data this way, I could efficiently manage the data without encountering size limitations.
 
-## Successful Deployment
+### Successful Deployment
 Finally, with the implementation of multiple MapDB files, I successfully pushed the optimized code to the hosting server. The server now boasts excellent performance, rapid data retrieval, and streamlined memory utilization, all essential for serving users seamlessly.
 
 ## Getting Started
