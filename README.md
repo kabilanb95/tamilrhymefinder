@@ -66,8 +66,9 @@ Navigate to the project directory.
 
 Execute the following command:
 
-Copy code
-docker-compose up
+
+```docker-compose up```
+
 The Tamil Rhyme Finder and Phrase Generator will now be accessible on port 8080.
 
 ## Features
