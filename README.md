@@ -2,7 +2,7 @@
 
 **Live at: [tamilrhymefinder.onrender.com](https://tamilrhymefinder.onrender.com)**
 
-**UPDATE : Temporarily down at the moment due to render acount issues, Will be back soon**
+**UPDATE : Temporarily down at the moment due to render.com account issues, Will be back soon**
 
 ## Table of Contents
 
