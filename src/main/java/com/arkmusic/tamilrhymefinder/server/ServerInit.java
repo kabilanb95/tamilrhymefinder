@@ -29,12 +29,24 @@ public class ServerInit extends HttpServlet
 		logger.info("---------- ServerInit Initialized process started successfully ----------");
 		try
 		{
+			logger.info("Intialising MapDB");
 			MapDBUtil.init();
+			logger.info("MapDB init completed, Going to wait 30 seconds");
+			Thread.sleep(30*1000);
+			logger.info("Intialising WordsManager");
 			WordsManager.init();
+			logger.info("WordsManager init completed, Going to wait 30 seconds");
+			Thread.sleep(30*1000);
+			logger.info("Intialising RhymeCacherManager");
 			RhymeCacherManager.init();
+			logger.info("RhymeCacherManager init completed, Going to wait 30 seconds");
+			Thread.sleep(30*1000);
+			logger.info("Intialising PhraseCacherManager");
 			PhraseCacherManager.init();
+			logger.info("PhraseCacherManager init completed, Going to wait 30 seconds");
+			Thread.sleep(30*1000);			
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			throw new RuntimeException("Unexpected IO Exception", e);
 		}
