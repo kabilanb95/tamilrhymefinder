@@ -1,7 +1,5 @@
 # Tamil Rhyme Finder and Phrase Generator
 
-**Live at: [tamilrhymefinder.onrender.com](https://tamilrhymefinder.onrender.com)**
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
