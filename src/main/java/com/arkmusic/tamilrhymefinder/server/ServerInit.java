@@ -27,7 +27,6 @@ public class ServerInit extends HttpServlet
 		isInitAlready = true;
 
 		logger.info("---------- ServerInit Initialized process started successfully ----------");
-		/*
 		try
 		{
 			MapDBUtil.init();
@@ -39,7 +38,6 @@ public class ServerInit extends HttpServlet
 		{
 			throw new RuntimeException("Unexpected IO Exception", e);
 		}
-		*/
 		logger.info("---------- ServerInit Initialized process ended successfully ----------");
 	}
 }
