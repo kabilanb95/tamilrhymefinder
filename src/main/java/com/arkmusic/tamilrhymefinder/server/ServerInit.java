@@ -27,17 +27,19 @@ public class ServerInit extends HttpServlet
 		isInitAlready = true;
 
 		logger.info("---------- ServerInit Initialized process started successfully ----------");
+		/*
 		try
 		{
-			// MapDBUtil.init();
-			// WordsManager.init();
-			// RhymeCacherManager.init();
-			// PhraseCacherManager.init();
+			MapDBUtil.init();
+			WordsManager.init();
+			RhymeCacherManager.init();
+			PhraseCacherManager.init();
 		}
 		catch(IOException e)
 		{
 			throw new RuntimeException("Unexpected IO Exception", e);
 		}
+		*/
 		logger.info("---------- ServerInit Initialized process ended successfully ----------");
 	}
 }
