@@ -29,10 +29,10 @@ public class ServerInit extends HttpServlet
 		logger.info("---------- ServerInit Initialized process started successfully ----------");
 		try
 		{
-			MapDBUtil.init();
-//			WordsManager.init();
-//			RhymeCacherManager.init();
-			PhraseCacherManager.init();
+			// MapDBUtil.init();
+			// WordsManager.init();
+			// RhymeCacherManager.init();
+			// PhraseCacherManager.init();
 		}
 		catch(IOException e)
 		{
