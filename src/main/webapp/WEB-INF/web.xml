@@ -1,0 +1,41 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>GetRhymingWords</servlet-name>
+		<display-name>GetRhymingWords</display-name>
+		<description></description>
+		<servlet-class>com.arkmusic.tamilrhymefinder.controller.RhymingWordsController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetPhrasesWithWord</servlet-name>
+		<display-name>GetPhrasesWithWord</display-name>
+		<description></description>
+		<servlet-class>com.arkmusic.tamilrhymefinder.controller.PhrasesController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetSimilarWords</servlet-name>
+		<display-name>GetSimilarWords</display-name>
+		<description></description>
+		<servlet-class>com.arkmusic.tamilrhymefinder.controller.PhoneticallySimilarWordsController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetRhymingWords</servlet-name>
+		<url-pattern>/GetRhymingWords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetPhrasesWithWord</servlet-name>
+		<url-pattern>/GetPhrasesWithWord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetSimilarWords</servlet-name>
+		<url-pattern>/GetSimilarWords</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
