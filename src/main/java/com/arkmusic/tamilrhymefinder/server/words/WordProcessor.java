@@ -43,5 +43,4 @@ public class WordProcessor
 	{
 		return !isVowel(c);
 	}
-
 }

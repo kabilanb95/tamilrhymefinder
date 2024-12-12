@@ -30,8 +30,8 @@ public class ServerInit extends HttpServlet
 		try
 		{
 			MapDBUtil.init();
-//			WordsManager.init();
-//			RhymeCacherManager.init();
+			WordsManager.init();
+			RhymeCacherManager.init();
 			PhraseCacherManager.init();
 		}
 		catch(IOException e)
