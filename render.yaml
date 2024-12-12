@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: tamilrhymefinder
-    env: docker
-    repo: https://github.com/kabilanb95/tamilrhymefinder.git
-    plan: free
-    branch: main
-    rootDir: .
-    numInstances: 1
