@@ -118,7 +118,7 @@ public class WordRepository
 		return wordCollection.find(query).first();
 	}
 
-	public List<String> findByPhoneticFeatures(Word word, PhoneticPropertyCriteria criteria)
+	public List<String> findByPhoneticFeatures(Word word, Language language, PhoneticPropertyCriteria criteria)
 	{
 		if(word == null)
 		{
@@ -132,6 +132,8 @@ public class WordRepository
 		}
 
 		List<Bson> filters = new ArrayList<>();
+		
+		filters.add(Filters.eq("language", language));
 
 		// Apply filters based on the provided criteria
 		if(criteria.isMatchingConsonantVowelPattern())

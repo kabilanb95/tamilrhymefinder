@@ -55,6 +55,6 @@ public class WordService
 		}
 
 		// Delegate to the repository method with the PhoneticFeatureCriteria object
-		return wordRepository.findByPhoneticFeatures(wordObj, criteria);
+		return wordRepository.findByPhoneticFeatures(wordObj, language, criteria);
 	}
 }
