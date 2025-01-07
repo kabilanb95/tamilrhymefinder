@@ -1,5 +1,7 @@
 # Tamil Rhyme Finder and Phrase Generator
 
+Note : The backend is completely revamped with advanced features in branch "mongodb_main". Please use this branch henceforth.
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
