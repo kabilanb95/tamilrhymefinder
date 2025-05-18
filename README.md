@@ -73,9 +73,9 @@ The MapDB file grew too large to upload. So I split it — one file per Tamil al
 
 Even after optimizing with MapDB, I realized long-term sustainability needed something more robust — especially for free hosting. So I shifted the entire storage responsibility to an external database.
 
-### Enter MongoDB
+### Complete Server Rehaul
 
-MongoDB’s generous free tier made it a natural fit. I tossed out the previous server code and rebuilt it using a clean **Controller-Repository-Service** design. The result? A much more maintainable and scalable backend.
+I tossed out the previous server code and rebuilt it using a clean **Controller-Service-Repository** design. The result? A much more maintainable and scalable backend. And I wanted to offload all storage requirements to a dedicated database server hosted elsewhere. MongoDB’s generous free tier hosting plan made it a natural fit.
 
 This time, I also introduced advanced features to support more nuanced word exploration — going beyond basic rhyming. These include:
 
